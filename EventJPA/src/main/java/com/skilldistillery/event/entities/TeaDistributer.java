@@ -9,9 +9,11 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name="tea_distributer")
-public class Distributer {
+public class TeaDistributer {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,7 +21,8 @@ public class Distributer {
 	private String name;
 	private String sellers;
 	private String websiteURL;
-	@OneToMany(mappedBy="distributer")
+	@JsonIgnore
+	@OneToMany(mappedBy="teaDistributer")
 	private List<TeaDetail> teaDetail;
 	public int getId() {
 		return id;
@@ -70,7 +73,7 @@ public class Distributer {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Distributer other = (Distributer) obj;
+		TeaDistributer other = (TeaDistributer) obj;
 		if (id != other.id)
 			return false;
 		if (name == null) {
@@ -99,7 +102,7 @@ public class Distributer {
 	public String toString() {
 		return "Distributer [id=" + id + ", name=" + name + ", sellers=" + sellers + ", websiteURL=" + websiteURL + "]";
 	}
-	public Distributer(int id, String name, String sellers, String websiteURL, List<TeaDetail> teaDetail) {
+	public TeaDistributer(int id, String name, String sellers, String websiteURL, List<TeaDetail> teaDetail) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -107,7 +110,7 @@ public class Distributer {
 		this.websiteURL = websiteURL;
 		this.teaDetail = teaDetail;
 	}
-	public Distributer() {
+	public TeaDistributer() {
 		super();
 	}
 	

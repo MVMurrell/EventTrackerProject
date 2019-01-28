@@ -12,6 +12,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name="cognitive_status")
 public class CognitiveStatus {
@@ -19,11 +21,12 @@ public class CognitiveStatus {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	
 	@Column(name="cognitive_status")
 	private String cognitiveStatus;
-	@OneToMany
-	@JoinTable(name="event_cs", joinColumns=@JoinColumn(name="cognitive_status_id"), 
-								inverseJoinColumns=@JoinColumn(name="event_id"))
+	
+	@JsonIgnore
+	@OneToMany(mappedBy="cs")
 	private List<Event> events;
 	
 	

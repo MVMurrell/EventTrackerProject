@@ -1,5 +1,6 @@
 package com.skilldistillery.event.entities;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -19,21 +20,22 @@ public class Event {
 	@ManyToOne
 	@JoinColumn(name = "user_id")
 	private User user;
+	@Column(name="event_time")
 	private String time;
+	@Column(name="event_date")
 	private String date;
+	
 	@ManyToOne
-	@JoinTable(name="event_cs", joinColumns=@JoinColumn(name="event_id"), 
-	                            inverseJoinColumns=@JoinColumn(name="cognitive_status_id"))
+	@JoinColumn(name="cognitive_status_id")
 	private CognitiveStatus cs;
 	
-	@OneToOne(mappedBy="event")
+	@OneToOne
+	@JoinColumn(name="coffee_id")
 	private Coffee coffee;
 	
-	@OneToOne(mappedBy="event")
+	@OneToOne
+	@JoinColumn(name="tea_id")
 	private Tea tea;
-	
-	@OneToOne(mappedBy="event")
-	private Water water;
 	
 	
 	public int getId() {
@@ -55,6 +57,7 @@ public class Event {
 		this.time = time;
 	}
 	public String getDate() {
+		
 		return date;
 	}
 	public void setDate(String date) {
@@ -78,12 +81,8 @@ public class Event {
 	public void setTea(Tea tea) {
 		this.tea = tea;
 	}
-	public Water getWater() {
-		return water;
-	}
-	public void setWater(Water water) {
-		this.water = water;
-	}
+	
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -95,7 +94,7 @@ public class Event {
 		result = prime * result + ((tea == null) ? 0 : tea.hashCode());
 		result = prime * result + ((time == null) ? 0 : time.hashCode());
 		result = prime * result + ((user == null) ? 0 : user.hashCode());
-		result = prime * result + ((water == null) ? 0 : water.hashCode());
+		
 		return result;
 	}
 	@Override
@@ -139,19 +138,15 @@ public class Event {
 				return false;
 		} else if (!user.equals(other.user))
 			return false;
-		if (water == null) {
-			if (other.water != null)
-				return false;
-		} else if (!water.equals(other.water))
-			return false;
+		
 		return true;
 	}
 	@Override
 	public String toString() {
 		return "Event [id=" + id + ", user=" + user + ", time=" + time + ", date=" + date + ", cs=" + cs + ", coffee="
-				+ coffee + ", tea=" + tea + ", water=" + water + "]";
+				+ coffee + ", tea=" + tea + "]";
 	}
-	public Event(int id, User user, String time, String date, CognitiveStatus cs, Coffee coffee, Tea tea, Water water) {
+	public Event(int id, User user, String time, String date, CognitiveStatus cs, Coffee coffee, Tea tea) {
 		super();
 		this.id = id;
 		this.user = user;
@@ -160,7 +155,7 @@ public class Event {
 		this.cs = cs;
 		this.coffee = coffee;
 		this.tea = tea;
-		this.water = water;
+		
 	}
 	public Event() {
 		super();

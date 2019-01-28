@@ -18,7 +18,7 @@ public class UserController {
 	private UserService uServ;
 	
 	@GetMapping("users")
-	public List<User> listPosts() {
+	public List<User> listUsers() {
 		return uServ.index();
 	}
 }

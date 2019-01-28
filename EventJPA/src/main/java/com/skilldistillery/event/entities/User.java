@@ -2,13 +2,14 @@ package com.skilldistillery.event.entities;
 
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class User {
@@ -22,7 +23,8 @@ public class User {
 	private String lastName;
 	private String password;
 	private String username;
-	@OneToMany(mappedBy="user", cascade = (CascadeType.ALL))
+	@JsonIgnore
+	@OneToMany(mappedBy="user")
 	private List<Event> events;
 	
 	
@@ -132,6 +134,7 @@ public class User {
 	public User() {
 		super();
 	}
+	
 	
 	
 

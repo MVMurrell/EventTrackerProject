@@ -10,6 +10,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class TeaDetail {
 
@@ -17,6 +19,7 @@ public class TeaDetail {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String name;
+	@JsonIgnore
 	@OneToMany(mappedBy="teaDetail")
 	private List<Tea> teas;
 	@ManyToOne
@@ -24,27 +27,28 @@ public class TeaDetail {
 	private Variety variety;
 	@ManyToOne
 	@JoinColumn(name="distributer_id")
-	private Distributer distributer;
-	public TeaDetail(int id, String name, List<Tea> teas, Variety variety, Distributer distributer) {
+	private TeaDistributer teaDistributer;
+	
+	public TeaDetail(int id, String name, List<Tea> teas, Variety variety, TeaDistributer distributer) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.teas = teas;
 		this.variety = variety;
-		this.distributer = distributer;
+		this.teaDistributer = distributer;
 	}
 	public TeaDetail() {
 		super();
 	}
 	@Override
 	public String toString() {
-		return "TeaDetail [id=" + id + ", name=" + name + ", variety=" + variety + ", distributer=" + distributer + "]";
+		return "TeaDetail [id=" + id + ", name=" + name + ", variety=" + variety + ", distributer=" + teaDistributer + "]";
 	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((distributer == null) ? 0 : distributer.hashCode());
+		result = prime * result + ((teaDistributer == null) ? 0 : teaDistributer.hashCode());
 		result = prime * result + id;
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		result = prime * result + ((teas == null) ? 0 : teas.hashCode());
@@ -60,10 +64,10 @@ public class TeaDetail {
 		if (getClass() != obj.getClass())
 			return false;
 		TeaDetail other = (TeaDetail) obj;
-		if (distributer == null) {
-			if (other.distributer != null)
+		if (teaDistributer == null) {
+			if (other.teaDistributer != null)
 				return false;
-		} else if (!distributer.equals(other.distributer))
+		} else if (!teaDistributer.equals(other.teaDistributer))
 			return false;
 		if (id != other.id)
 			return false;
@@ -108,11 +112,11 @@ public class TeaDetail {
 	public void setVariety(Variety variety) {
 		this.variety = variety;
 	}
-	public Distributer getDistributer() {
-		return distributer;
+	public TeaDistributer getDistributer() {
+		return teaDistributer;
 	}
-	public void setDistributer(Distributer distributer) {
-		this.distributer = distributer;
+	public void setDistributer(TeaDistributer distributer) {
+		this.teaDistributer = distributer;
 	}
 	
 }

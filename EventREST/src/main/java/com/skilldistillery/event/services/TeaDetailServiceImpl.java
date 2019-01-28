@@ -15,7 +15,6 @@ import org.springframework.stereotype.Service;
 import com.skilldistillery.event.entities.Tea;
 import com.skilldistillery.event.entities.TeaDetail;
 import com.skilldistillery.event.entities.User;
-import com.skilldistillery.event.entities.Water;
 import com.skilldistillery.event.repositories.TeaDetailRepository;
 
 @Transactional

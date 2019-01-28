@@ -9,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name="tea_variety")
 public class Variety {
@@ -17,6 +19,7 @@ public class Variety {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private  String variety;
+	@JsonIgnore
 	@OneToMany(mappedBy="variety")
 	private List<TeaDetail> teaDetail;
 	public int getId() {

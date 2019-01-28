@@ -8,6 +8,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Coffee {
 	
@@ -15,8 +17,8 @@ public class Coffee {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private double amount;
-	@OneToOne
-	@JoinColumn(name="event_id")
+	@JsonIgnore
+	@OneToOne(mappedBy="coffee")
 	private Event event;
 	@ManyToOne
 	@JoinColumn(name="detail_id")
@@ -86,7 +88,7 @@ public class Coffee {
 	}
 	@Override
 	public String toString() {
-		return "Coffee [id=" + id + ", amount=" + amount + ", event=" + event + ", coffeeDetail=" + coffeeDetail + "]";
+		return "Coffee [id=" + id + ", amount=" + amount + ", coffeeDetail=" + coffeeDetail + "]";
 	}
 	public Coffee(int id, double amount, Event event, CoffeeDetail coffeeDetail) {
 		super();

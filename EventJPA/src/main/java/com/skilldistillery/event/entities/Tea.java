@@ -14,8 +14,7 @@ public class Tea {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	@OneToOne
-	@JoinColumn(name="event_id")
+	@OneToOne(mappedBy="tea")
 	private Event event;
 	private double amount;
 	@ManyToOne

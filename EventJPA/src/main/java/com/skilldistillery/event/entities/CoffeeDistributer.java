@@ -8,6 +8,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class CoffeeDistributer {
 
@@ -17,6 +19,7 @@ public class CoffeeDistributer {
 	private String name;
 	private String sellers;
 	private String websiteURL;
+	@JsonIgnore
 	@OneToMany(mappedBy="distributer")
 	private List<CoffeeDetail> coffeeDetail;
 	public int getId() {

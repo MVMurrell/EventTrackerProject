@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import com.skilldistillery.event.entities.Event;
 import com.skilldistillery.event.entities.User;
-import com.skilldistillery.event.entities.Water;
 import com.skilldistillery.event.repositories.UserRepository;
 
 @Transactional

@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Roast {
 
@@ -20,6 +22,7 @@ public class Roast {
 	@Column(name="coffee_type")
 	private String coffeeType;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy="roast")
 	private List<CoffeeDetail> coffeeDetail;
 

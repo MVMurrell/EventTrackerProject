@@ -10,6 +10,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class CoffeeDetail {
 
@@ -18,14 +20,16 @@ public class CoffeeDetail {
 	private int id;
 	private String name;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy="coffeeDetail")
 	private List<Coffee> coffee;
 	
 	@ManyToOne
 	@JoinColumn(name="coffee_distributer_id")
 	private CoffeeDistributer distributer;
+	
 	@ManyToOne
-	@JoinColumn(name="roast")
+	@JoinColumn(name="roast_id")
 	private Roast roast;
 	
 	
