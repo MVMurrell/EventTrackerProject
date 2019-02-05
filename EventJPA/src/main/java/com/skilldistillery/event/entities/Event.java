@@ -17,14 +17,18 @@ public class Event {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	@ManyToOne
-	@JoinColumn(name = "user_id")
-	private User user;
+
 	@Column(name="event_time")
 	private String time;
 	@Column(name="event_date")
 	private String date;
-	
+	private Integer amount;
+	public Integer getAmount() {
+		return amount;
+	}
+	public void setAmount(Integer amount) {
+		this.amount = amount;
+	}
 	@ManyToOne
 	@JoinColumn(name="cognitive_status_id")
 	private CognitiveStatus cs;
@@ -44,12 +48,7 @@ public class Event {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public User getUser() {
-		return user;
-	}
-	public void setUser(User user) {
-		this.user = user;
-	}
+
 	public String getTime() {
 		return time;
 	}
@@ -87,14 +86,13 @@ public class Event {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((amount == null) ? 0 : amount.hashCode());
 		result = prime * result + ((coffee == null) ? 0 : coffee.hashCode());
 		result = prime * result + ((cs == null) ? 0 : cs.hashCode());
 		result = prime * result + ((date == null) ? 0 : date.hashCode());
 		result = prime * result + id;
 		result = prime * result + ((tea == null) ? 0 : tea.hashCode());
 		result = prime * result + ((time == null) ? 0 : time.hashCode());
-		result = prime * result + ((user == null) ? 0 : user.hashCode());
-		
 		return result;
 	}
 	@Override
@@ -106,6 +104,11 @@ public class Event {
 		if (getClass() != obj.getClass())
 			return false;
 		Event other = (Event) obj;
+		if (amount == null) {
+			if (other.amount != null)
+				return false;
+		} else if (!amount.equals(other.amount))
+			return false;
 		if (coffee == null) {
 			if (other.coffee != null)
 				return false;
@@ -133,23 +136,17 @@ public class Event {
 				return false;
 		} else if (!time.equals(other.time))
 			return false;
-		if (user == null) {
-			if (other.user != null)
-				return false;
-		} else if (!user.equals(other.user))
-			return false;
-		
 		return true;
 	}
 	@Override
 	public String toString() {
-		return "Event [id=" + id + ", user=" + user + ", time=" + time + ", date=" + date + ", cs=" + cs + ", coffee="
-				+ coffee + ", tea=" + tea + "]";
+		return "Event [id=" + id + ", time=" + time + ", date=" + date + ", amount=" + amount + ", cs=" + cs
+				+ ", coffee=" + coffee + ", tea=" + tea + "]";
 	}
-	public Event(int id, User user, String time, String date, CognitiveStatus cs, Coffee coffee, Tea tea) {
+	public Event(int id, String time, String date, CognitiveStatus cs, Coffee coffee, Tea tea) {
 		super();
 		this.id = id;
-		this.user = user;
+//		this.user = user;
 		this.time = time;
 		this.date = date;
 		this.cs = cs;

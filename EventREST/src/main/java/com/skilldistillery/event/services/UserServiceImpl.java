@@ -49,7 +49,7 @@ public class UserServiceImpl implements UserService{
 		if(user.getLastName() != null) {managed.setLastName(user.getLastName());}
 		if(user.getPassword()!= null) {managed.setPassword(user.getPassword());}
 		if(user.getUsername() != null) {managed.setUsername(user.getUsername());}
-		if(user.getEvents() != null) {managed.setEvents(user.getEvents());}
+//		if(user.getEvents() != null) {managed.setEvents(user.getEvents());}
 		repo.saveAndFlush(managed);
 		return managed;
 	}
@@ -63,7 +63,7 @@ public class UserServiceImpl implements UserService{
 		managed.setLastName(user.getLastName());
 		managed.setPassword(user.getPassword());
 		managed.setUsername(user.getUsername());
-		managed.setEvents(user.getEvents());
+//		managed.setEvents(user.getEvents());
 		repo.saveAndFlush(managed);
 		return managed;
 	}

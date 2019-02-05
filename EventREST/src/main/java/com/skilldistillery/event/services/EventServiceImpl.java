@@ -46,7 +46,7 @@ public class EventServiceImpl implements EventService {
 	@Override
 	public Event update(Event event) {
 		Event managed = repo.findById(event.getId()).get();
-		if(event.getUser() != null) {managed.setUser(event.getUser());}
+		if(event.getAmount() != null) {managed.setAmount(event.getAmount());}
 		if(event.getDate() != null) {managed.setDate(event.getDate());}
 		if(event.getTime() != null) {managed.setTime(event.getTime());}
 		repo.saveAndFlush(managed);
@@ -56,7 +56,7 @@ public class EventServiceImpl implements EventService {
 	@Override
 	public Event replace(Event event) {
 		Event managed = repo.findById(event.getId()).get();
-		managed.setUser(event.getUser());
+		managed.setAmount(event.getAmount());
 		managed.setDate(event.getDate());
 		managed.setTime(event.getTime());
 		repo.saveAndFlush(managed);

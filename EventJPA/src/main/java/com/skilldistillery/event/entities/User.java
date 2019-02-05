@@ -23,9 +23,9 @@ public class User {
 	private String lastName;
 	private String password;
 	private String username;
-	@JsonIgnore
-	@OneToMany(mappedBy="user")
-	private List<Event> events;
+//	@JsonIgnore
+//	@OneToMany(mappedBy="user")
+//	private List<Event> events;
 	
 	
 	
@@ -36,12 +36,12 @@ public class User {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public List<Event> getEvents() {
-		return events;
-	}
-	public void setEvents(List<Event> events) {
-		this.events = events;
-	}
+//	public List<Event> getEvents() {
+//		return events;
+//	}
+//	public void setEvents(List<Event> events) {
+//		this.events = events;
+//	}
 	public String getFirstName() {
 		return firstName;
 	}
@@ -70,7 +70,7 @@ public class User {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((events == null) ? 0 : events.hashCode());
+//		result = prime * result + ((events == null) ? 0 : events.hashCode());
 		result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
 		result = prime * result + id;
 		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
@@ -87,11 +87,11 @@ public class User {
 		if (getClass() != obj.getClass())
 			return false;
 		User other = (User) obj;
-		if (events == null) {
-			if (other.events != null)
-				return false;
-		} else if (!events.equals(other.events))
-			return false;
+//		if (events == null) {
+//			if (other.events != null)
+//				return false;
+//		} else if (!events.equals(other.events))
+//			return false;
 		if (firstName == null) {
 			if (other.firstName != null)
 				return false;
@@ -122,14 +122,14 @@ public class User {
 				+ ", username=" + username + "]";
 	}
 	
-	public User(int id, String firstName, String lastName, String password, String username, List<Event> events) {
+	public User(int id, String firstName, String lastName, String password, String username) {
 		super();
 		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.password = password;
 		this.username = username;
-		this.events = events;
+//		this.events = events;
 	}
 	public User() {
 		super();
